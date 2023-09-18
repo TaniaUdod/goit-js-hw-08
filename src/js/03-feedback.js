@@ -18,15 +18,20 @@ function onInput(event) {
 
 function reloadPage() {
     if (formData) {
-        email.value = formData.email || '';
-        message.value = formData.message || '';
+        email.value = formData.email || "";
+        message.value = formData.message || "";
     }
 }
 
 function onSubmit(event) {
     event.preventDefault();
     console.log({ email: email.value, message: message.value });
+
+    if (email.value === "" || message.value === "") {
+        return alert('Please fill in all the fields!');
+    }
     
     localStorage.removeItem(STORAGE_KEY);
     event.currentTarget.reset();
+    formData = {};
 }
